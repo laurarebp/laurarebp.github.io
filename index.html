@@ -4,17 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <!-- Script de Font Awesome Kit -->
-    <script src="https://kit.fontawesome.com/2c8dc0dab1.js" crossorigin="anonymous"></script>
-    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background-color: black;">
-    <div id="wrapper">
-        <div id="menu">
-            <ul>
-                <li><a href="#projects"><i class="fas fa-code"></i><span class="menu-text">Proyectos</span></a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i><span class="menu-text">Contacto</span></a></li>
-            </ul>
-        </div>
+<body>
+    <nav class="nav">
+        <a href="#" class="nav-item is-active" active-color="white">Home</a>
+        <a href="#" class="nav-item" active-color="white">About</a>
+      
+        <a href="#" class="nav-item" active-color="white">Blog</a>
+        <a href="#" class="nav-item" active-color="white">Contact</a>
+        <span class="nav-indicator"></span>
+      </nav>
+
+      <script>
+        const indicator = document.querySelector('.nav-indicator');
+const items = document.querySelectorAll('.nav-item');
+
+function handleIndicator(el) {
+  items.forEach(item => {
+    item.classList.remove('is-active');
+    item.removeAttribute('style');
+  });
+
+  indicator.style.width = `${el.offsetWidth}px`;
+  indicator.style.left = `${el.offsetLeft}px`;
+  indicator.style.backgroundColor = el.getAttribute('active-color');
+
+  el.classList.add('is-active');
+  el.style.color = el.getAttribute('active-color');
+}
+
+
+items.forEach((item, index) => {
+  item.addEventListener('click', e => {handleIndicator(e.target);});
+  item.classList.contains('is-active') && handleIndicator(item);
+});
+      </script>
 </body>
+</html>
